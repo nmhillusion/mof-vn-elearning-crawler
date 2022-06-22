@@ -44,7 +44,7 @@
   };
 
   function buildQuestionFromParts(questionIdx, parts: string[] = []) {
-    if (parts) {
+    if (parts && 0 < parts.length) {
       parts.unshift(`[${questionIdx + 1}]`);
       parts.push("---");
       for (const part of parts) {
