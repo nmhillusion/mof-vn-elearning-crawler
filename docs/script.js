@@ -30,6 +30,9 @@
                 questionIdx += 1;
             }
         }
+        else {
+            alert("Does not contains any question from source-code");
+        }
     };
     function buildQuestionFromParts(questionIdx, parts = []) {
         if (parts && 0 < parts.length) {

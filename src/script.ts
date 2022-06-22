@@ -40,6 +40,8 @@
         buildQuestionFromParts(questionIdx, parts);
         questionIdx += 1;
       }
+    } else {
+      alert("Does not contains any question from source-code");
     }
   };
 
