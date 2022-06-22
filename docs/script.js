@@ -29,9 +29,9 @@
                 buildQuestionFromParts(questionIdx, parts);
                 questionIdx += 1;
             }
-        }
-        else {
-            alert("Does not contains any question from source-code");
+            if (0 == questionIdx) {
+                alert("Does not contains any question from source-code");
+            }
         }
     };
     function buildQuestionFromParts(questionIdx, parts = []) {
