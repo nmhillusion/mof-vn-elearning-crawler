@@ -2,9 +2,11 @@
   console.log("MOF eLearning Crawler");
   const PATTERN__QUESTION = /onmousemove="Tip\(&#39;(.+?)&#39;\)"/;
 
-  const btnSubmit = document.querySelector("#btn-submit");
-  const inpContentEl = document.querySelector("#input-box");
-  const resultListEl = document.querySelector("#result-list");
+  const btnSubmit = document.querySelector("#btn-submit") as HTMLButtonElement;
+  const inpContentEl = document.querySelector("#input-box") as HTMLInputElement;
+  const resultListEl = document.querySelector(
+    "#result-list"
+  ) as HTMLTableElement;
 
   btnSubmit.onclick = (e) => {
     const inpContent = inpContentEl.value.trim();
@@ -41,7 +43,7 @@
     }
   };
 
-  function buildQuestionFromParts(questionIdx, parts = []) {
+  function buildQuestionFromParts(questionIdx, parts: string[] = []) {
     if (parts) {
       parts.unshift(`[${questionIdx + 1}]`);
       parts.push("---");
@@ -54,6 +56,8 @@
         trEl.appendChild(tdEl);
         resultListEl.appendChild(trEl);
       }
+    } else {
+      alert("Does not contains any question from source-code");
     }
   }
 })();

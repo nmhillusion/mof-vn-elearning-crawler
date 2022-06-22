@@ -1,0 +1,26 @@
+{
+  "name": "mof-vn-elearning-crawler",
+  "version": "0.0.1",
+  "description": "simple site to crawler question from MOF VN eLearning System",
+  "main": "script.js",
+  "scripts": {
+    "start": "node render.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmhillusion/mof-vn-elearning-crawler.git"
+  },
+  "keywords": [
+    "nmhillusion"
+  ],
+  "author": "nmhillusion",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmhillusion/mof-vn-elearning-crawler/issues"
+  },
+  "homepage": "https://github.com/nmhillusion/mof-vn-elearning-crawler#readme",
+  "devDependencies": {
+    "n2ngin-bull-engine": "https://github.com/nmhillusion/n2ngin-bull-engine/tarball/v0.0.3"
+  }
+}

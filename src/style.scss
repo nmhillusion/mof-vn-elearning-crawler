@@ -17,11 +17,11 @@ button {
   cursor: pointer;
   background-color: #333;
   color: #fff;
-}
 
-button:hover {
-  background-color: #555;
-  color: #fff;
+  &:hover {
+    background-color: #555;
+    color: #fff;
+  }
 }
 
 .input-panel {
@@ -29,18 +29,18 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.input-panel #input-box {
-  width: 90%;
+  #input-box {
+    width: 90%;
+  }
 }
 
 .result-panel table,
 #result-list {
   border-collapse: collapse;
-}
 
-#result-list td {
-  border: solid 1px #999;
-  padding: 0.5em 1em;
+  td {
+    border: solid 1px #999;
+    padding: 0.5em 1em;
+  }
 }
