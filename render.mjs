@@ -3,7 +3,7 @@ import { BullEngine } from "n2ngin-bull-engine";
 new BullEngine()
   .config({
     rootDir: process.cwd() + "/src",
-    outDir: process.cwd() + "/docs",
+    outDir: process.cwd() + "/dist",
     pug: {
       enabled: true,
     },
