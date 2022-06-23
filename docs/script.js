@@ -24,7 +24,9 @@
                 const parts = String(qsGroup)
                     .split(/&lt;br \/\>/)
                     .filter((e) => e)
-                    .map((it) => it.replace(/&lt;(.+?)>/g, ""));
+                    .map((it) => it.replace(/&lt;\/?(br|b)(.*?)>/g, ""))
+                    .map((it) => it.replace(/&lt;font(.*?)>/g, ""))
+                    .map((it) => it.replace(/&lt;\/font(.*?)>/g, "[*]"));
                 console.log({ parts });
                 buildQuestionFromParts(questionIdx, parts);
                 questionIdx += 1;
