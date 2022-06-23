@@ -42,5 +42,9 @@ button {
   td {
     border: solid 1px #999;
     padding: 0.5em 1em;
+
+    &.correct {
+      color: #36f;
+    }
   }
 }

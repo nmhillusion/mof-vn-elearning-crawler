@@ -1,6 +1,7 @@
 (function main() {
   console.log("MOF eLearning Crawler");
   const PATTERN__QUESTION = /onmousemove="Tip\(&#39;(.+?)&#39;\)"/;
+  const CORRECT_MARK = "[*]";
 
   const btnSubmit = document.querySelector("#btn-submit") as HTMLButtonElement;
   const inpContentEl = document.querySelector("#input-box") as HTMLInputElement;
@@ -33,10 +34,10 @@
         const [_matched, qsGroup] = qsMatching;
         const parts = String(qsGroup)
           .split(/&lt;br \/\>/)
-          .filter((e) => e)
           .map((it) => it.replace(/&lt;\/?(br|b)(.*?)>/g, ""))
           .map((it) => it.replace(/&lt;font(.*?)>/g, ""))
-          .map((it) => it.replace(/&lt;\/font(.*?)>/g, "[*]"));
+          .map((it) => it.replace(/&lt;\/font(.*?)>/g, CORRECT_MARK))
+          .filter((e) => e);
         console.log({ parts });
 
         buildQuestionFromParts(questionIdx, parts);
@@ -58,6 +59,9 @@
         const tdEl = document.createElement("td");
 
         tdEl.textContent = part;
+        if (part.endsWith(CORRECT_MARK)) {
+          tdEl.classList.add("correct");
+        }
 
         trEl.appendChild(tdEl);
         resultListEl.appendChild(trEl);
