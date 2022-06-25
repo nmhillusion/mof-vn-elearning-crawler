@@ -6,15 +6,26 @@ new BullEngine()
     outDir: process.cwd() + "/dist",
     pug: {
       enabled: true,
+      config: {
+        pretty: false,
+      },
     },
     scss: {
       enabled: true,
+      config: {
+        outputStyle: "compressed",
+      },
     },
     typescript: {
       enabled: true,
     },
     copyResource: {
       enabled: true,
+    },
+    rewriteJavascript: {
+      enabled: true,
+      rewriteImport: true,
+      compress: true,
     },
   })
   .render();
