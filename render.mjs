@@ -24,8 +24,17 @@ new BullEngine()
     },
     rewriteJavascript: {
       enabled: true,
-      rewriteImport: true,
-      compress: true,
+      config: {
+        rewriteImport: true,
+        compress: true,
+      },
+    },
+    watch: {
+      enabled: true,
+      config: {
+        handleChangeEvent: true,
+        handleRenameEvent: true,
+      },
     },
   })
   .render();

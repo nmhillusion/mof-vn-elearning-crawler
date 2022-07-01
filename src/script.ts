@@ -2,6 +2,7 @@
   console.log("MOF eLearning Crawler");
   const PATTERN__QUESTION = /onmousemove="Tip\(&#39;(.+?)&#39;\)"/;
   const CORRECT_MARK = "[*]";
+  let MATCHED_QUESTION: string[] = [];
 
   const btnSubmit = document.querySelector("#btn-submit") as HTMLButtonElement;
   const inpContentEl = document.querySelector("#input-box") as HTMLInputElement;
@@ -17,6 +18,7 @@
       return;
     }
 
+    MATCHED_QUESTION = [];
     console.log("input content: ", { inpContent });
 
     const questionsMatching = inpContent.matchAll(
@@ -32,16 +34,21 @@
       let questionIdx = 0;
       for (const qsMatching of questionsMatching) {
         const [_matched, qsGroup] = qsMatching;
-        const parts = String(qsGroup)
-          .split(/&lt;br \/\>/)
-          .map((it) => it.replace(/&lt;\/?(br|b)(.*?)>/g, ""))
-          .map((it) => it.replace(/&lt;font(.*?)>/g, ""))
-          .map((it) => it.replace(/&lt;\/font(.*?)>/g, CORRECT_MARK))
-          .filter((e) => e);
-        console.log({ parts });
 
-        buildQuestionFromParts(questionIdx, parts);
-        questionIdx += 1;
+        if (!MATCHED_QUESTION.includes(_matched)) {
+          MATCHED_QUESTION.push(_matched);
+
+          const parts = String(qsGroup)
+            .split(/&lt;br \/\>/)
+            .map((it) => it.replace(/&lt;\/?(br|b)(.*?)>/g, ""))
+            .map((it) => it.replace(/&lt;font(.*?)>/g, ""))
+            .map((it) => it.replace(/&lt;\/font(.*?)>/g, CORRECT_MARK))
+            .filter((e) => e);
+          console.log({ parts });
+
+          buildQuestionFromParts(questionIdx, parts);
+          questionIdx += 1;
+        }
       }
 
       if (0 == questionIdx) {
@@ -56,14 +63,27 @@
       parts.push("---");
       for (const part of parts) {
         const trEl = document.createElement("tr");
-        const tdEl = document.createElement("td");
 
-        tdEl.textContent = part;
         if (part.endsWith(CORRECT_MARK)) {
+          const tdEl = document.createElement("td");
+          tdEl.textContent = part.replace(CORRECT_MARK, "");
           tdEl.classList.add("correct");
+
+          const tdElCorrect = document.createElement("td");
+          tdElCorrect.textContent = "x";
+
+          trEl.appendChild(tdEl);
+          trEl.appendChild(tdElCorrect);
+        } else {
+          const tdEl = document.createElement("td");
+          tdEl.textContent = part;
+
+          const tdElCorrect = document.createElement("td");
+
+          trEl.appendChild(tdEl);
+          trEl.appendChild(tdElCorrect);
         }
 
-        trEl.appendChild(tdEl);
         resultListEl.appendChild(trEl);
       }
     } else {
