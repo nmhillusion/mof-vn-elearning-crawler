@@ -1,5 +1,9 @@
 import { BullEngine } from "n2ngin-bull-engine";
 
+const [_, __, mode] = process.argv;
+
+const isProdMode = "PROD" === String(mode).toUpperCase();
+
 new BullEngine()
   .config({
     rootDir: process.cwd() + "/src",
@@ -26,11 +30,11 @@ new BullEngine()
       enabled: true,
       config: {
         rewriteImport: true,
-        compress: true,
+        compress: isProdMode,
       },
     },
     watch: {
-      enabled: true,
+      enabled: !isProdMode,
       config: {
         handleChangeEvent: true,
         handleRenameEvent: true,

@@ -5,6 +5,7 @@
   "main": "script.js",
   "scripts": {
     "start": "node render.mjs",
+    "build": "node render.mjs PROD",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
