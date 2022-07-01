@@ -10,6 +10,17 @@
     "#result-list"
   ) as HTMLTableElement;
 
+  resultListEl.onclick = () => {
+    if (window.getSelection) {
+      const range = document.createRange();
+      range.selectNode(resultListEl);
+      window.getSelection()?.removeAllRanges();
+      window.getSelection()?.addRange(range);
+    } else {
+      console.warn("browser does not support selection in window object");
+    }
+  };
+
   btnSubmit.onclick = (e) => {
     const inpContent = inpContentEl.value.trim();
 
