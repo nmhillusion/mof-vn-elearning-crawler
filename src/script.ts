@@ -5,6 +5,7 @@
   let MATCHED_QUESTION: string[] = [];
 
   const btnSubmit = document.querySelector("#btn-submit") as HTMLButtonElement;
+  const btnClean = document.querySelector("#btn-clean") as HTMLButtonElement;
   const inpContentEl = document.querySelector("#input-box") as HTMLInputElement;
   const resultListEl = document.querySelector(
     "#result-list"
@@ -65,6 +66,13 @@
       if (0 == questionIdx) {
         alert("Does not contains any question from source-code");
       }
+    }
+  };
+
+  btnClean.onclick = () => {
+    inpContentEl.value = "";
+    while (resultListEl.firstChild) {
+      resultListEl.removeChild(resultListEl.firstChild);
     }
   };
 

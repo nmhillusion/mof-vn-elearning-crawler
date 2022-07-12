@@ -9,8 +9,13 @@
   font-family: monospace;
 }
 
+.button-box {
+  display: flex;
+  justify-content: center;
+}
+
 button {
-  margin: 1em 0;
+  margin: 1em 0.5em;
   padding: 1em 2em;
   border-radius: 3px;
   border: 0;
@@ -18,9 +23,19 @@ button {
   background-color: #333;
   color: #fff;
 
+  &.btn-clean {
+    background-color: transparent;
+    color: #f22;
+    border: solid 1px currentColor;
+  }
+
   &:hover {
     background-color: #555;
     color: #fff;
+
+    &.btn-clean {
+      background-color: #f22;
+    }
   }
 }
 
